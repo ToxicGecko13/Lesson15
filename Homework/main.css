@@ -1,0 +1,42 @@
+body {
+    background-color: whitesmoke;
+}
+
+#Title {
+    font-size: 50px;
+}
+
+.Button {
+    border: none;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: gray;
+    border-radius: 7px;
+}
+
+.Button:hover {
+    background-color: rgb(158, 158, 158);
+    cursor: pointer;
+    box-shadow: 1px 1px 2px;
+    transition-duration: inherit;
+}
+
+.ButtonBox {
+    padding: 5px;
+}
+
+.Assignment {
+    font-size: 24px;
+}
+
+.Answer {
+    font-size: 18px;
+}
+
+.List {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: 20px;
+}
