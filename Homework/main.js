@@ -65,7 +65,7 @@ function exercise1() {
         return `${person.firstName} ${person.lastName}`;
     });
 
-    let randomPerson = mapFullNames[Math.floor(Math.random() * 7)];
+    let randomPerson = mapFullNames[Math.floor(Math.random() * people.length)];
 
     document.getElementById("1").innerText = `Answer: ${JSON.stringify(randomPerson)}`;
 
@@ -75,29 +75,58 @@ function exercise1() {
 function exercise2() {
     // Return the people sorted by the number of skills they have.
 
-    // let mapFullNames = people.map(person => {
-    //     return `${person.firstName} ${person.lastName}`;
-    // })
-
-    // let numberSkills = people.filter((person) => { 
-    //     let filterAn = person.Skills.filter(skill => skill === "SQL" ).length > 0;
-    //     return filterAn;
-    // });
-
-    let numberSkills = people.Skills.map(people => { 
-        return 
+    let sortPeopleSkills = people.sort((a, b) => {
+        let aSkills = a.Skills.length;
+        let bSkills = b.Skills.length;
+        if (aSkills > bSkills) {
+            return -1;
+        };
+        if (aSkills < bSkills) {
+            return 1;
+        };
+        return 0;
     });
 
-    document.getElementById("2").innerText = `Answer: ${JSON.stringify(numberSkills)}`;
-    // document.getElementById("2").innerText = `Answer: ${JSON.stringify(sortedNamesByNum)}`;
+    let mapFullNames = sortPeopleSkills.map(person => {
+        return `${person.firstName} ${person.lastName}`;
+    }).join(", ");
+
+    document.getElementById("2").innerText = `Answer: ${JSON.stringify(mapFullNames)}`;
 
 }
 
 
 function exercise3() {
-    // Return the people sorted by their name, starting with lastName then firstName.
+    // Return the people sorted by their name, starting with last name then first name.
 
-
+    
+    let sortedPeopleFN = people.sort((a, b) => {
+        let aFName = a.firstName;
+        let bFName = b.firstName;
+        if (aFName < bFName) {
+            return -1;
+        };
+        if (aFName > bFName) {
+            return 1;
+        };
+        return 0;
+    });
+    
+    let sortedPeopleLN = sortedPeopleFN.sort((a, b) => {
+        let aLName = a.lastName;
+        let bLName = b.lastName;
+        if (aLName < bLName) {
+            return -1;
+        };
+        if (aLName > bLName) {
+            return 1;
+        };
+        return 0;
+    }); 
+    
+    let sortedNamesByNameLF = sortedPeopleLN.map(person => {
+        return `${person.firstName} ${person.lastName}`;
+    }).join(", ");
 
     document.getElementById("3").innerText = `Answer: ${JSON.stringify(sortedNamesByNameLF)}`;
 
@@ -108,8 +137,18 @@ function exercise4() {
     // Return an array of the people with the fields: name, job and salary. 
     // Make name the combination of first and last name and the salary a random number between 60000 and 120000.
 
+    function randomNumber(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
+    let randomSalary = randomNumber(60000, 120000);
 
+    let peopleWithFields = people.map(person => {
+        return `${person.firstName} ${person.lastName} ${person.job} ${randomSalary}`;
+    }).join(", ");
+    
     document.getElementById("4").innerText = `Answer: ${JSON.stringify(peopleWithFields)}`;
 
 }
